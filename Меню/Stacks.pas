@@ -37,7 +37,7 @@ begin
   Top := nil;
   while value <> 999 do
   begin
-    write('Введите число (для завершения введите 999): ');
+    write('Введите число (999 для выхода): ');
     readln(value);
     if value <> 999 then
       AddStack(Top, value);
@@ -100,19 +100,21 @@ end;
 procedure DrawStacksMenu(x, y: integer);
 begin
   clrscr;
-  gotoxy(x, y);     write('Создать Стэк');
-  gotoxy(x, y + 1); write('Соеденить 2 разных Стэка');
-  gotoxy(x, y + 2); write('Создание Очереди из Стэка');
-  gotoxy(x, y + 3); write('Назад в главное меню');
+  gotoxy(x, y);     write('1. Создать Стэк');
+  gotoxy(x, y + 1); write('2. Добавить элемент в Стэк');
+  gotoxy(x, y + 2); write('3. Соеденить 2 разных Стэка');
+  gotoxy(x, y + 3); write('4. Создание Очереди из Стэка');
+  gotoxy(x, y + 4); write('Назад в главное меню');
 end;
 
 procedure MenuOfStacks;
 const
-  Items = 4;
+  Items = 5;
 var
   ok:     boolean;
   Top1, Top2: EXST;
   Bottom, Top: PtrQ;
+  value:  integer;
   n:      byte;
 begin
   ok := true; 
@@ -132,18 +134,30 @@ begin
       2:
         begin
           clrscr;
-          MakeStack(Top1);
-          MakeStack(Top2);
-          ConnectionStacks(Top1, Top2);
-          writeln('Объединенный Cтэк: ');
+          write('Введите число: ');
+          read(value);
+          AddStack(Top1, value);
+          write('Элементы Cтэка: ');
           ViewStack(Top1);
           PressAnyKey;
         end;
       3:
         begin
           clrscr;
+          writeln('Создать Стэк 1');
           MakeStack(Top1);
-          write('Объединенный Cтэк: ');
+          writeln('Создать Стэк 2');
+          MakeStack(Top2);
+          ConnectionStacks(Top1, Top2);
+          writeln('Объединенный Cтэк: ');
+          ViewStack(Top1);
+          PressAnyKey;
+        end;
+      4:
+        begin
+          clrscr;
+          MakeStack(Top1);
+          write('Элементы Cтэка: ');
           ViewStack(Top1);
           writeln('');
           StackToQueue(Top1, Bottom, Top);
@@ -151,7 +165,7 @@ begin
           ViewQueue(Bottom);
           PressAnyKey
         end;
-      4:
+      5:
         begin
           clrscr;
           ok := false;

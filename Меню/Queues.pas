@@ -46,7 +46,7 @@ begin
   Top := nil;
   while value <> 999 do
   begin
-    write('Введите число (для завершения введите 999): ');
+    write('Введите число (999 для выхода): ');
     read(value);
     if value <> 999 then
       AddQueue(Bottom, Top, value);
@@ -68,16 +68,18 @@ end;
 procedure DrawQueuesMenu(x, y: integer);
 begin
   clrscr;
-  gotoxy(x, y);     write('Создать Очередь');
-  gotoxy(x, y + 1); write('Назад в главное меню');
+  gotoxy(x, y);     write('1. Создать Очередь');
+  gotoxy(x, y + 1); write('2. Добавить элемент в Очередь');
+  gotoxy(x, y + 2); write('Назад в главное меню');
 end;
 
 procedure MenuOfQueues;
 const
-  Items = 2;
+  Items = 3;
 var
   ok:     boolean;
   Bottom, Top: PtrQ;
+  value:  integer;
   n:      byte;
 begin
   ok := true; 
@@ -89,12 +91,22 @@ begin
       1:
         begin
           clrscr;
-            MakeQueue(Bottom, Top);
-            write('Элементы Очереди: ');
-            ViewQueue(Bottom);
+          MakeQueue(Bottom, Top);
+          write('Элементы Очереди: ');
+          ViewQueue(Bottom);
           PressAnyKey;
         end;
       2:
+        begin
+          clrscr;
+          write('Введите число: ');
+          read(value);
+          AddQueue(Bottom, Top, Value);
+          write('Элементы Очереди: ');
+          ViewQueue(Bottom);
+          PressAnyKey;
+        end;
+      3:
         begin
           clrscr;
           ok := false;

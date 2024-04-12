@@ -123,13 +123,13 @@ end;
 procedure DrawVectMenu(x, y: integer);
 begin
   clrscr;
-  gotoxy(x, y);     write('Сложение векторов');
-  gotoxy(x, y + 1); write('Скалярное произведение векторов');
-  gotoxy(x, y + 2); write('Произведение векторов');
-  gotoxy(x, y + 3); write('Смешанное произведение векторов');
-  gotoxy(x, y + 4); write('Разность векторов');
-  gotoxy(x, y + 5); write('Модуль вектора');
-  gotoxy(x, y + 6); write('Умножение вектора на число');
+  gotoxy(x, y);     write('1. Сложение векторов');
+  gotoxy(x, y + 1); write('2. Скалярное произведение векторов');
+  gotoxy(x, y + 2); write('3. Произведение векторов');
+  gotoxy(x, y + 3); write('4. Смешанное произведение векторов');
+  gotoxy(x, y + 4); write('5. Разность векторов');
+  gotoxy(x, y + 5); write('6. Модуль вектора');
+  gotoxy(x, y + 6); write('7. Умножение вектора на число');
   gotoxy(x, y + 7); write('Назад в главное меню');
 end;
 

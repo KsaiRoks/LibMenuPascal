@@ -5,7 +5,7 @@ interface
 const
   X = 5;
   Y = 2;
-  Items = 9;  // количество пунктов меню
+  Items = 10;  // количество пунктов меню
 
 procedure PressAnyKey;
 procedure DrawMainMenu(x, y: integer);
@@ -15,7 +15,7 @@ procedure MainMenu;
 implementation
 
 uses
-  crt, Compl, ComplMatrix, Vect, CVect, Stacks, Queues, Files, Favor;
+  crt, Compl, ComplMatrix, Vect, CVect, Stacks, Queues, Vertics, Files, Favor;
 
 procedure PressAnyKey;
 begin
@@ -27,15 +27,16 @@ end;
 procedure DrawMainMenu(x, y: integer);
 begin
   clrscr;
-  gotoxy(x, y);     write('Комплексные числа');
-  gotoxy(x, y + 1); write('Комплексные матрицы');
-  gotoxy(x, y + 2); write('Векторы');
-  gotoxy(x, y + 3); write('Комплексные векторы');
-  gotoxy(x, y + 4); write('Стэки');
-  gotoxy(x, y + 5); write('Очереди');
-  gotoxy(x, y + 6); write('Файлы'); 
-  gotoxy(x, y + 7); write('Избранное');
-  gotoxy(x, y + 8); write('Выход');
+  gotoxy(x, y);     write('1. Комплексные числа');
+  gotoxy(x, y + 1); write('2. Комплексные матрицы');
+  gotoxy(x, y + 2); write('3. Векторы');
+  gotoxy(x, y + 3); write('4. Комплексные векторы');
+  gotoxy(x, y + 4); write('5. Стэки');
+  gotoxy(x, y + 5); write('6. Очереди');
+  gotoxy(x, y + 6); write('7. Вертикальное меню');
+  gotoxy(x, y + 7); write('8. Файлы'); 
+  gotoxy(x, y + 8); write('9. Избранное');
+  gotoxy(x, y + 9); write('Выход');
 end;
 
 function SelectMenu(x, y, count: integer): integer;
@@ -66,7 +67,7 @@ end;
 
 procedure MainMenu;
 const
-  Items = 9; //количество пунктов меню
+  Items = 10; //количество пунктов меню
 var
   ok: boolean;
   n: byte;
@@ -83,9 +84,10 @@ begin
       4: MenuOfCVect;
       5: MenuOfStacks;
       6: MenuOfQueues;
-      7: MenuOfFiles;
-      8: MenuOfFavor;
-      9:
+      7: MenuOfVertics;
+      8: MenuOfFiles;
+      9: MenuOfFavor;
+      10:
         begin
           clrscr;
           ok := false;

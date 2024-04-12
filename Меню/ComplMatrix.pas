@@ -187,13 +187,13 @@ end;
 procedure DrawComplexMatrixMenu(x, y: integer);
 begin
   clrscr;
-  gotoxy(x, y);     write('Сложение комплексных матриц');
-  gotoxy(x, y + 1); write('Умножение комплексных матриц');
-  gotoxy(x, y + 2); write('Умножение комплексной матрицы на скаляр');
-  gotoxy(x, y + 3); write('Нулевая матрица');
-  gotoxy(x, y + 4); write('Еденичная матрица');
-  gotoxy(x, y + 5); write('Норма матрицы');
-  gotoxy(x, y + 6); write('Экспонента матрицы');
+  gotoxy(x, y);     write('1. Сложение комплексных матриц');
+  gotoxy(x, y + 1); write('2. Умножение комплексных матриц');
+  gotoxy(x, y + 2); write('3. Умножение комплексной матрицы на скаляр');
+  gotoxy(x, y + 3); write('4. Нулевая матрица');
+  gotoxy(x, y + 4); write('5. Еденичная матрица');
+  gotoxy(x, y + 5); write('6. Норма матрицы');
+  gotoxy(x, y + 6); write('7. Экспонента матрицы');
   gotoxy(x, y + 7); write('Назад в главное меню');
 end;
 

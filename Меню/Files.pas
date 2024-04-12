@@ -108,9 +108,9 @@ end;
 procedure DrawFilesMenu(x, y: integer);
 begin
   clrscr;
-  gotoxy(x, y);     write('Создать Файл');
-  gotoxy(x, y + 1); write('Добавить элемент в Файл');
-  gotoxy(x, y + 2); write('Просмотреть Файл');
+  gotoxy(x, y);     write('1. Создать Файл');
+  gotoxy(x, y + 1); write('2. Добавить элемент в Файл');
+  gotoxy(x, y + 2); write('3. Просмотреть Файл');
   gotoxy(x, y + 3); write('Назад в главное меню');
 end;
 

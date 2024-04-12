@@ -18,11 +18,11 @@ uses
 procedure DrawFavorMenu(x, y: integer);
 begin
   clrscr;
-  gotoxy(x, y);     write('Отрицательная мнимая часть');
-  gotoxy(x, y + 1); write('Вычитание комплексных чисел');
-  gotoxy(x, y + 2); write('Комплексное e');
-  gotoxy(x, y + 3); write('Косинус комплексного числа');
-  gotoxy(x, y + 4); write('Синус комплексного числа');
+  gotoxy(x, y);     write('1. Отрицательная мнимая часть');
+  gotoxy(x, y + 1); write('2. Вычитание комплексных чисел');
+  gotoxy(x, y + 2); write('3. Комплексное e');
+  gotoxy(x, y + 3); write('4. Косинус комплексного числа');
+  gotoxy(x, y + 4); write('5. Синус комплексного числа');
   gotoxy(x, y + 5); write('Назад в главное меню');
 end;
 
