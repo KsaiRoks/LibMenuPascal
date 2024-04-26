@@ -5,7 +5,7 @@ interface
 const
   X = 5;
   Y = 2;
-  Items = 10;  // количество пунктов меню
+  Items = 11;  // количество пунктов меню
 
 procedure PressAnyKey;
 procedure DrawMainMenu(x, y: integer);
@@ -15,7 +15,7 @@ procedure MainMenu;
 implementation
 
 uses
-  crt, Compl, ComplMatrix, Vect, CVect, Stacks, Queues, Vertics, Files, Favor;
+  crt, Compl, ComplMatrix, Vect, CVect, Stacks, Queues, Vertics, Files, Nodes, Favor;
 
 procedure PressAnyKey;
 begin
@@ -35,8 +35,9 @@ begin
   gotoxy(x, y + 5); write('6. Очереди');
   gotoxy(x, y + 6); write('7. Вертикальное меню');
   gotoxy(x, y + 7); write('8. Файлы'); 
-  gotoxy(x, y + 8); write('9. Избранное');
-  gotoxy(x, y + 9); write('Выход');
+  gotoxy(x, y + 8); write('10. Деревья'); 
+  gotoxy(x, y + 9); write('11. Избранное');
+  gotoxy(x, y + 10); write('Выход');
 end;
 
 function SelectMenu(x, y, count: integer): integer;
@@ -67,7 +68,7 @@ end;
 
 procedure MainMenu;
 const
-  Items = 10; //количество пунктов меню
+  Items = 11; //количество пунктов меню
 var
   ok: boolean;
   n: byte;
@@ -86,8 +87,9 @@ begin
       6: MenuOfQueues;
       7: MenuOfVertics;
       8: MenuOfFiles;
-      9: MenuOfFavor;
-      10:
+      9: MenuOfNodes;
+      10: MenuOfFavor;
+      11:
         begin
           clrscr;
           ok := false;
