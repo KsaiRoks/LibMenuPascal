@@ -32,7 +32,6 @@ const
 var
   ok: boolean;
   U, V, W: Complex;
-  a: real;
   n: byte;
 begin
   ok := true; 

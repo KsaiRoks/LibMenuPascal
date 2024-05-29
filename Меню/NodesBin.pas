@@ -1,16 +1,17 @@
-﻿unit Nodes;
+﻿unit NodesBin;
 
 interface
 
 type
   NodePtr = ^Node;
   Node = record
-    Name: char;
+    Key: byte;
     Left, Right: NodePtr;
   end;
 
-procedure MakeSubTree(Leave: NodePtr);
+procedure MakeNode(NewKey: byte; var Top: NodePtr);
 procedure MakeTree(var Top: NodePtr);
+function SearchNode(Top: NodePtr; SearchKey: byte): NodePtr;
 procedure WayUpToDown(Top: NodePtr);
 procedure WayDownToUp(Top: NodePtr);
 function Height(Top: NodePtr): byte;
@@ -18,7 +19,7 @@ procedure WayHorizontal(Top: NodePtr; Level: byte);
 procedure ViewTreeUpToDown(Top: NodePtr);
 procedure ViewTreeDownToUp(Top: NodePtr);
 procedure ViewTreeHorizontal(Top: NodePtr);
-procedure MenuOfNodes;
+procedure MenuOfNodesBin;
 
 implementation
 
@@ -27,48 +28,58 @@ uses
 
 var
   Top: NodePtr;
-  Key, Symbol: char;
-  OK: boolean;
 
-procedure MakeSubTree(Leave: NodePtr);
-var
-  Top: NodePtr;
+procedure MakeNode(NewKey: byte; var Top: NodePtr);
 begin
-  write('Введите текущий узел: ');
-  readln(Leave^.Name);
-  write('Добавить ЛЕВОЕ поддерево для ', Leave^.Name, ' ? ');
-  readln(Key);
-  if Key in ['y', 'Y', 'н', 'Н'] then
+  if Top = nil then
   begin
     new(Top);
-    Leave^.Left := Top;
-    MakeSubTree(Top);
+    Top^.Key := NewKey;
+    Top^.Left := nil;
+    Top^.Right := nil;
   end
-  else
-    Leave^.Left := nil;
-  write('Добавить ПРАВОЕ поддерево для ', Leave^.Name, ' ? ');
-  readln(Key);
-  if Key in ['y', 'Y', 'н', 'Н'] then
+  else if NewKey < Top^.Key then
   begin
-    new(Top);
-    Leave^.Right := Top;
-    MakeSubTree(Top);
+    MakeNode(NewKey, Top^.Left);
   end
   else
-    Leave^.Right := nil;
+  begin
+    MakeNode(NewKey, Top^.Right);
+  end;
 end;
 
 procedure MakeTree(var Top: NodePtr);
+var
+  i, n, inputKey: byte;
 begin
-  new(Top);
-  MakeSubTree(Top);
+  write('Введите начально число: ');
+  read(n);
+  Top := nil;
+  for i := 1 to n do
+  begin
+    write('Введите новое число: ');
+    read(inputKey);
+    MakeNode(inputKey, Top);
+  end;
+end;
+
+function SearchNode(Top: NodePtr; SearchKey: byte): NodePtr;
+begin
+  if Top = nil then
+    SearchNode := nil
+  else if Top^.Key = SearchKey then
+    SearchNode := Top
+  else if SearchKey < Top^.Key then
+    SearchNode := SearchNode(Top^.Left, SearchKey)
+  else
+    SearchNode := SearchNode(Top^.Right, SearchKey)
 end;
 
 procedure WayUpToDown(Top: NodePtr);
 begin
   if Top <> nil then
   begin
-    write(Top^.Name, ' ');
+    write(Top^.Key, ' ');
     WayUpToDown(Top^.Left);
     WayUpToDown(Top^.Right);
   end
@@ -80,7 +91,7 @@ begin
   begin
     WayDownToUp(Top^.Left);
     WayDownToUp(Top^.Right);
-    write(Top^.Name, ' ');
+    write(Top^.Key, ' ');
   end
 end;
 
@@ -105,7 +116,7 @@ procedure WayHorizontal(Top: NodePtr; Level: byte);
 begin
   if Top <> nil then
     if Level = 1 then
-      write(Top^.Name, ' ')
+      write(Top^.key, ' ')
     else
     begin
       WayHorizontal(Top^.Left, level - 1);
@@ -142,7 +153,8 @@ begin
   end;
 end;
 
-procedure DrawNodesMenu(x, y: integer);
+
+procedure DrawNodesBinMenu(x, y: integer);
 begin
   clrscr;
   gotoxy(x, y);     write('1. Создать дерево');
@@ -152,7 +164,7 @@ begin
   gotoxy(x, y + 4); write('Назад в главное меню');
 end;
 
-procedure MenuOfNodes;
+procedure MenuOfNodesBin;
 const
   Items = 5;
 var
@@ -162,7 +174,7 @@ begin
   ok := true; 
   while ok = true do
   begin
-    DrawNodesMenu(X, Y);
+    DrawNodesBinMenu(X, Y);
     n := SelectMenu(X - 2, Y, Items);
     case n of
       1:

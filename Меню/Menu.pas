@@ -5,7 +5,7 @@ interface
 const
   X = 5;
   Y = 2;
-  Items = 12;  // количество пунктов меню
+  Items = 14;  // количество пунктов меню
 
 procedure PressAnyKey;
 procedure DrawMainMenu(x, y: integer);
@@ -15,7 +15,7 @@ procedure MainMenu;
 implementation
 
 uses
-  crt, Compl, ComplMatrix, Vect, CVect, Stacks, Queues, Vertics, Files, FilesSearch, Nodes, Favor;
+  crt, Compl, ComplMatrix, Vect, CVect, Stacks, Queues, Vertics, Files, FilesSearch, Nodes, NodesEdit, NodesBin, Favor;
 
 procedure PressAnyKey;
 begin
@@ -36,9 +36,11 @@ begin
   gotoxy(x, y + 6); write('7. Вертикальное меню');
   gotoxy(x, y + 7); write('8. Файлы'); 
   gotoxy(x, y + 8); write('9. Файлы поиск');
-  gotoxy(x, y + 9); write('10. Деревья'); 
-  gotoxy(x, y + 10); write('11. Избранное');
-  gotoxy(x, y + 11); write('Выход');
+  gotoxy(x, y + 9); write('10. Деревья');
+  gotoxy(x, y + 10); write('11. Деревья изменения');
+  gotoxy(x, y + 11); write('12. Бинарные деревья');
+  gotoxy(x, y + 12); write('13. Избранное');
+  gotoxy(x, y + 13); write('Выход');
 end;
 
 function SelectMenu(x, y, count: integer): integer;
@@ -69,7 +71,7 @@ end;
 
 procedure MainMenu;
 const
-  Items = 12; //количество пунктов меню
+  Items = 14; //количество пунктов меню
 var
   ok: boolean;
   n: byte;
@@ -90,8 +92,10 @@ begin
       8: MenuOfFiles;
       9: MenuOfFilesSearch;
       10: MenuOfNodes;
-      11: MenuOfFavor;
-      12:
+      11: MenuOfNodesEdit;
+      12: MenuOfNodesBin;
+      13: MenuOfFavor;
+      14:
         begin
           clrscr;
           ok := false;
