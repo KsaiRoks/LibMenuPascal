@@ -42,7 +42,7 @@ begin
   begin
     MakeNode(NewKey, Top^.Left);
   end
-  else
+  else if NewKey > Top^.Key then
   begin
     MakeNode(NewKey, Top^.Right);
   end;
@@ -52,9 +52,16 @@ procedure MakeTree(var Top: NodePtr);
 var
   i, n, inputKey: byte;
 begin
-  write('Введите начально число: ');
-  read(n);
-  Top := nil;
+  write('Введите корень дерева: ');
+  readln(n);
+
+  new(Top);
+  Top^.Key := n;
+  Top^.Left := nil;
+  Top^.Right := nil;
+
+  write('Введите количество чисел для добавления в дерево: ');
+  readln(n);
   for i := 1 to n do
   begin
     write('Введите новое число: ');
@@ -115,13 +122,15 @@ end;
 procedure WayHorizontal(Top: NodePtr; Level: byte);
 begin
   if Top <> nil then
+  begin
     if Level = 1 then
       write(Top^.key, ' ')
-    else
+    else if level > 1 then
     begin
       WayHorizontal(Top^.Left, level - 1);
       WayHorizontal(Top^.Right, level - 1);
     end;
+  end;
 end;
 
 
@@ -148,7 +157,7 @@ begin
   HeightTree := Height(Top);
   for i := 1 to HeightTree do
   begin
-    writeln('');
+    writeln;
     WayHorizontal(Top, i);
   end;
 end;
