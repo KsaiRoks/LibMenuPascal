@@ -39,7 +39,7 @@ var
 begin
   write('Введите текущий узел: ');
   readln(Leave^.Name);
-  write('Добавить ЛЕВОЕ поддерево для ', Leave^.Name, ' ? ');
+  write('Добавить ЛЕВОЕ поддерево для ', Leave^.Name, '? ');
   readln(Key);
   if Key in ['y', 'Y', 'н', 'Н'] then
   begin
@@ -49,7 +49,7 @@ begin
   end
   else
     Leave^.Left := nil;
-  write('Добавить ПРАВОЕ поддерево для ', Leave^.Name, ' ? ');
+  write('Добавить ПРАВОЕ поддерево для ', Leave^.Name, '? ');
   readln(Key);
   if Key in ['y', 'Y', 'н', 'Н'] then
   begin

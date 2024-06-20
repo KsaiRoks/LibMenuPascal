@@ -25,20 +25,21 @@ var
   StudentText: text;
 
 begin
-  writeln('Введите имя файла');
+  write('Введите имя файла: ');
   readln(TextName);
   assign(StudentText, TextName);
   {$I-} append(StudentText);{$I+}
+  ch := 'y';
   if not FileExists(TextName) then
     rewrite(StudentText);
-  while ch not in ['n', 'N', 'т', 'Т'] do
+  while ch in ['y', 'Y', 'н', 'Н'] do
   begin
     write('Введите фамилию студента: ');
     readln(Name);
     write('Введите его оценки: ');
     readln(Mark);
     write(StudentText, Name: 10, Mark: 5);
-    write('Нажмите n для завершения: ');
+    write('Нажмите n для продолжения: ');
     readln(ch);
   end;
   close(StudentText)
